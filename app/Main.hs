@@ -30,6 +30,8 @@ gameOver word success = do
     clearScreen
     putStr $ "\n" ++ (if success then "You won! " else "You lost! ")
     putStrLn $ "The word was " ++ word
+    _ <- getLine
+    return ()
 
 check word guesses correct lives
     | correct == (length word) = gameOver word True

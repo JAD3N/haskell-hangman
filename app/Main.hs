@@ -14,6 +14,7 @@ getWord = do
 getGuess :: IO Char
 getGuess = do
     putStr "Enter a letter: "
+    hFlush stdout
     guess <- getLine
     return (guess !! 0)
 

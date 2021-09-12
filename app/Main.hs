@@ -1,14 +1,13 @@
 module Main where
 
+import System.IO
 import System.Console.ANSI
 import Data.List (intersperse)
-import Data.Char (isSpace)
-
-rstrip = reverse . dropWhile isSpace . reverse
 
 getWord :: IO String
 getWord = do
     putStr "Enter the word to guess: "
+    hFlush stdout
     word <- getLine
     return word
 
@@ -28,7 +27,7 @@ displayWord word guesses = do
 displayLives word guesses = putStrLn ("You have " ++ (show $ getLives word guesses) ++ " lives!")
 gameOver word success = do
     clearScreen
-    putStr (if success then "You won! " else "You lost! ")
+    putStr $ "\n" ++ (if success then "You won! " else "You lost! ")
     putStrLn $ "The word was " ++ word
 
 check word guesses correct lives
